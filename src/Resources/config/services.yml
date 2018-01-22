@@ -1,0 +1,16 @@
+services:
+    Janisbiz\SymfonyWorkflowExtended\WorkflowBundle\Service\WorkflowEventLeaveService:
+        autowire: true
+        arguments:
+            $stateMachineName: ''
+            $options:
+                commands:
+                    - Janisbiz\SymfonyWorkflowExtended\WorkflowBundle\Workflow\Command\LogStateMachineTransitionCommand
+                    - Janisbiz\SymfonyWorkflowExtended\WorkflowBundle\Workflow\Command\DeactivateStateMachineTimeoutCommand
+        tags: [{ name: kernel.event_listener, event: workflow.leave }]
+
+    Janisbiz\SymfonyWorkflowExtended\WorkflowBundle\Service\StateMachineTimeoutService:
+        autowire: true
+
+    Janisbiz\SymfonyWorkflowExtended\WorkflowBundle\Service\StateMachineInitialisingService:
+        autowire: true
